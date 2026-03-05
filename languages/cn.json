@@ -1,0 +1,100 @@
+{
+  "tokenActionHud": {
+    "dnd5e": {
+      "1stLevelSpells": "1st Level Spells",
+      "2ndLevelSpells": "2nd Level Spells",
+      "3rdLevelSpells": "3rd Level Spells",
+      "4thLevelSpells": "4th Level Spells",
+      "5thLevelSpells": "5th Level Spells",
+      "6thLevelSpells": "6th Level Spells",
+      "7thLevelSpells": "7th Level Spells",
+      "8thLevelSpells": "8th Level Spells",
+      "9thLevelSpells": "9th Level Spells",
+      "abilities": "属性",
+      "activeFeatures": "Active Features",
+      "artifact": "Artifact",
+      "artificerInfusions": "Artificer Infusions",
+      "atWillSpells": "At-Will Spells",
+      "backgroundFeatures": "Background Features",
+      "bonusActions": "獎勵行動",
+      "cantrips": "Cantrips",
+      "channelDivinity": "Channel Divinity",
+      "check": "Check",
+      "checks": "检定",
+      "classFeatures": "Class Features",
+      "common": "Common",
+      "condition": "Condition",
+      "conditions": "状态",
+      "counter": " 计分器",
+      "counters": "计分牌",
+      "crewActions": "船員行動",
+      "defensiveTactics": "Defensive Tactics",
+      "eldritchInvocations": "Eldritch Invocations",
+      "elementalDisciplines": "Elemental Disciplines",
+      "feats": "Feats",
+      "fightingStyles": "Fighting Styles",
+      "huntersPrey": "Hunter's Prey",
+      "innateSpells": "Innate Spells",
+      "item": "Item",
+      "kiAbilities": "Ki Abilities",
+      "lair": "巢穴",
+      "lairActions": "巢穴行動",
+      "legendary": "传奇",
+      "legendaryActions": "傳奇動作",
+      "magicItems": "魔法物品",
+      "maneuvers": "Maneuvers",
+      "metamagicOptions": "Metamagic Options",
+      "monsterFeatures": "Monster Features",
+      "multiattacks": "Multiattacks",
+      "otherActions": "其他行為",
+      "pactBoons": "Pact Boons",
+      "pactSpells": "Pact Spells",
+      "passiveFeatures": "Passive Features",
+      "psionicPowers": "Psionic Powers",
+      "raceFeatures": "Race Features",
+      "rare": "Rare",
+      "rests": "休息",
+      "rollInitiative": "先攻掷骰",
+      "runes": "Runes",
+      "skill": "Skill",
+      "skills": "技能",
+      "superiorHuntersDefense": "Superior Hunter's Defense",
+      "uncommon": "Uncommon",
+      "veryRare": "Very Rare",
+      "settings": {
+        "abbreviateSkills": {
+          "hint": "Display skill and ability names as a three-character abbreviation",
+          "name": "Abbreviate Skill and Ability Names"
+        },
+        "displaySpellInfo": {
+          "hint": "Display spell component information, concentration, and ritual status next to the spell's name",
+          "name": "Display Spell Information"
+        },
+        "showItemsWithoutActivationCosts": {
+          "hint": "Show items without an activation cost",
+          "name": "Show Items without Activation Costs"
+        },
+        "showSlowActions": {
+          "hint": "Show actions that take longer than one round",
+          "name": "Show Slow Actions"
+        },
+        "showUnchargedItems": {
+          "hint": "Show items with no charges remaining",
+          "name": "Show Uncharged Items"
+        },
+        "showUnequippedItems": {
+          "hint": "Show unequipped items",
+          "name": "Show Unequipped Items"
+        },
+        "showUnequippedItemsNpcs": {
+          "hint": "Show unequipped items for NPCs",
+          "name": "Show Unequipped Items for NPCs"
+        },
+        "showUnpreparedSpells": {
+          "hint": "Show unprepared spells",
+          "name": "Show Unprepared Spells"
+        }
+      }
+    }
+  }
+}
