@@ -16,58 +16,18 @@
     "verified": "13"
   },
   "esmodules": [
-    "./scripts/token-action-hud-dnd5e.min.js"
+    "./scripts/init.js"
   ],
   "scripts": [
   ],
   "styles": [
-    "./styles/tah-dnd5e.css"
+    "./styles/tah-template-style.css"
   ],
   "languages": [
-    {
-      "lang": "cn",
-      "name": "中文",
-      "path": "languages/cn.json"
-    },
-    {
-      "lang": "de",
-      "name": "Deutsch",
-      "path": "languages/de.json"
-    },
     {
       "lang": "en",
       "name": "English",
       "path": "languages/en.json"
-    },
-    {
-      "lang": "es",
-      "name": "Spanish",
-      "path": "languages/es.json"
-    },
-    {
-      "lang": "fr",
-      "name": "French",
-      "path": "languages/fr.json"
-    },
-    {
-      "lang": "it",
-      "name": "italiano",
-      "path": "languages/it.json"
-    },
-    {
-      "lang": "ja",
-      "name": "日本語",
-      "path": "languages/ja.json"
-    },
-    {
-      "lang": "ko",
-      "name": "Korean",
-      "path": "languages/ko.json"
-    },
-    {
-      "lang": "pl",
-      "name": "Polish",
-      "path": "languages/pl.json"
     },
     {
       "lang": "pt-BR",
@@ -80,23 +40,29 @@
     "systems": [
       {
         "id": "tormenta20",
-        "compatibility": {
+        "type": "system",
+        "compatibility": [
+          {
           "minimum": "1.5.015",
           "maximum": "1.5.015",
           "verified": "1.5.015"
-        }
+          }
+        ]
       }
     ],
     "requires": [
       {
         "id": "token-action-hud-core",
         "type": "module",
-        "compatibility": {
+        "compatibility": [
+          {
           "minimum": "2.0.11",
           "maximum": "2.0.99",
           "verified": "2.0.16"
-        }
-      }    ],
+          }
+        ] 
+      }
+    ],
     "optional": [],
     "flags": {
       "optional": []

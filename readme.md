@@ -1,6 +1,6 @@
-![Downloads](https://img.shields.io/github/downloads/Larkinabout/fvtt-token-action-hud-dnd5e/latest/module.zip?color=2b82fc&label=DOWNLOADS&style=for-the-badge) [![Forge Installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Ftoken-action-hud-dnd5e&colorB=448d34&style=for-the-badge)](https://forge-vtt.com/bazaar#package=token-action-hud-dnd5e)
+![Downloads](https://img.shields.io/github/downloads/Larkinabout/fvtt-token-action-hud-template/latest/module.zip?color=2b82fc&label=DOWNLOADS&style=for-the-badge) [![Forge Installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Ftoken-action-hud-template&colorB=448d34&style=for-the-badge)](https://forge-vtt.com/bazaar#package=token-action-hud-template)
 
-# Token Action HUD D&D 5e
+# Token Action HUD Template
 
 Token Action HUD is a repositionable HUD of actions for a selected token.
 
@@ -10,39 +10,29 @@ Token Action HUD is a repositionable HUD of actions for a selected token.
 - Make rolls directly from the HUD instead of opening your character sheet.
 - Use items from the HUD or right-click an item to open its sheet.
 - Move the HUD and choose to expand the menus up or down.
-- Unlock the HUD to customise groups and actions.
-- Add your own macros and Journal Entry and Roll Table compendiums.
+- Unlock the HUD to customise layout and groups per user, and actions per actor.
+- Add your own macros, journal entries and roll table compendiums.
 
 # Installation
 
 ## Method 1
 1. On Foundry VTT's **Configuration and Setup** screen, go to **Add-on Modules**
 2. Click **Install Module**
-3. Search for **Token Action HUD D&D 5e** 
+3. Search for **Token Action HUD Pathfinder 2** 
 4. Click **Install** next to the module listing
 
 ## Method 2
 1. On Foundry VTT's **Configuration and Setup** screen, go to **Add-on Modules**
 2. Click **Install Module**
-3. In the Manifest URL field, paste: `https://github.com/Larkinabout/fvtt-token-action-hud-dnd5e/releases/latest/download/module.json`
+3. In the Manifest URL field, paste: `https://github.com/Larkinabout/fvtt-token-action-hud-template/releases/latest/download/module.json`
 4. Click **Install** next to the pasted Manifest URL
 
-# Required Modules
+## Required Modules
 
-## Token Action HUD Core
-Token Action HUD D&D 5e requires the [Token Action HUD D&D Core](https://foundryvtt.com/packages/token-action-hud-core) module.
+**IMPORTANT** - Token Action HUD Template requires the [Token Action HUD Core](https://foundryvtt.com/packages/token-action-hud-core) module to be installed.
 
-## socketlib
-Token Action HUD Core requires the [socketlib](https://foundryvtt.com/packages/socketlib) library module.
-
-# Recommended Modules
+## Recommended Modules
 Token Action HUD uses the [Color Picker](https://foundryvtt.com/packages/color-picker) library module for its color picker settings.
-
-# For Developers
-## Hooks
-The following hooks are available to use:
-- **tokenActionHudSystemActionHoverOn**: Called when an action in the HUD is hovered on.
-- **tokenActionHudSystemActionHoverOff**: Called when an action in the HUD is hovered off.
 
 # Support
 
