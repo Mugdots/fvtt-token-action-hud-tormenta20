@@ -1,0 +1,20 @@
+{
+  "tokenActionHud": {
+    "template": {
+      "armor": "Armadura",
+      "containers": "Containers",
+      "consumables": "Consumíveis",
+      "equipment": "Equipamento",
+      "inventory": "Inventário",
+      "item": "Item",
+      "weapons": "Armas",
+      "treasure": "Tesouro",
+      "settings": {
+        "displayUnequipped": {
+          "hint": "Choose whether to display unequipped items on the HUD",
+          "name": "Display Unequipped"
+        }
+      }
+    }
+  }
+}

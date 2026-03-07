@@ -2,7 +2,7 @@
  * Module-based constants
  */
 export const MODULE = {
-    ID: 'token-action-hud-template'
+    ID: 'token-action-hud-t20'
 }
 
 /**
@@ -15,13 +15,13 @@ export const CORE_MODULE = {
 /**
  * Core module version required by the system module
  */
-export const REQUIRED_CORE_MODULE_VERSION = '1.5'
+export const REQUIRED_CORE_MODULE_VERSION = '2.0'
 
 /**
  * Action types
  */
 export const ACTION_TYPE = {
-    item: 'tokenActionHud.template.item',
+    item: 'tokenActionHud.t20.item',
     utility: 'tokenActionHud.utility'
 }
 
@@ -29,15 +29,16 @@ export const ACTION_TYPE = {
  * Groups
  */
 export const GROUP = {
-    armor: { id: 'armor', name: 'tokenActionHud.template.armor', type: 'system' },
-    equipment: { id: 'equipment', name: 'tokenActionHud.template.equipment', type: 'system' },
-    consumables: { id: 'consumables', name: 'tokenActionHud.template.consumables', type: 'system' },
-    containers: { id: 'containers', name: 'tokenActionHud.template.containers', type: 'system' },
-    treasure: { id: 'treasure', name: 'tokenActionHud.template.treasure', type: 'system' },
-    weapons: { id: 'weapons', name: 'tokenActionHud.template.weapons', type: 'system' },
+    armor: { id: 'armor', name: 'tokenActionHud.t20.armor', type: 'system' },
+    equipment: { id: 'equipment', name: 'tokenActionHud.t20.equipment', type: 'system' },
+    consumables: { id: 'consumables', name: 'tokenActionHud.t20.consumables', type: 'system' },
+    containers: { id: 'containers', name: 'tokenActionHud.t20.containers', type: 'system' },
+    treasure: { id: 'treasure', name: 'tokenActionHud.t20.treasure', type: 'system' },
+    weapons: { id: 'weapons', name: 'tokenActionHud.t20.weapons', type: 'system' },
     combat: { id: 'combat', name: 'tokenActionHud.combat', type: 'system' },
     token: { id: 'token', name: 'tokenActionHud.token', type: 'system' },
-    utility: { id: 'utility', name: 'tokenActionHud.utility', type: 'system' }
+    utility: { id: 'utility', name: 'tokenActionHud.utility', type: 'system' },
+    skills: {id: 'skills', name: 'tokenActionHud.t20.pericias', type: 'system'}
 }
 
 /**

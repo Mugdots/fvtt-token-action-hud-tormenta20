@@ -1,5 +1,5 @@
 // System Module Imports
-import { ACTION_TYPE, ITEM_TYPE } from './constants.js'
+import { ACTION_TYPE, ITEM_TYPE, GROUP } from './constants.js'
 import { Utils } from './utils.js'
 
 export let ActionHandler = null
@@ -43,6 +43,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
          */
         #buildCharacterActions () {
             this.#buildInventory()
+            this.#buildPericias()
         }
 
         /**
@@ -54,9 +55,34 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         }
 
         /**
-         * Build inventory
+         * Build Habilidade
          * @private
+         * @param {string} groupId
          */
+        #buildPericias () {
+        
+            const pericias = this.actor?.system.pericias || CONFIG.T20.pericias;
+            
+            if (pericias.length === 0) return;
+
+            const actionType = "skills";
+            // Pegar Ações
+            const actions = Object.entries(pericias)
+            .map(([id, pericia]) => {
+                const name = CONFIG.T20.pericias[id].label;
+
+                return {
+                    id: id,
+                    name: pericia.label,
+                    listName: name,
+                    system: { actionType, actionId: id }
+                }
+            }).filter(pericia => !!pericia);
+            
+        this.addActions(actions, { id:"skills" });
+    }
+
+
         async #buildInventory () {
             if (this.items.size === 0) return
 
