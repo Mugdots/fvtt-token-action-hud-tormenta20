@@ -65,21 +65,23 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
             
             if (pericias.length === 0) return;
 
-            const actionType = "skills";
+            const actionType = "atributes";
             // Pegar Ações
             const actions = Object.entries(pericias)
             .map(([id, pericia]) => {
                 const name = CONFIG.T20.pericias[id].label;
+                const encodedValue = [actionType, id].join(this.delimiter)
 
                 return {
                     id: id,
                     name: pericia.label,
                     listName: name,
+                    encodedValue,
                     system: { actionType, actionId: id }
                 }
             }).filter(pericia => !!pericia);
             
-        this.addActions(actions, { id:"skills" });
+        this.addActions(actions, GROUP.skills);
     }
 
 

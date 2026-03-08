@@ -22,7 +22,8 @@ export const REQUIRED_CORE_MODULE_VERSION = '2.0'
  */
 export const ACTION_TYPE = {
     item: 'tokenActionHud.t20.item',
-    utility: 'tokenActionHud.utility'
+    utility: 'tokenActionHud.utility',
+    atributes: 'tokenActionHud.atributes'
 }
 
 /**
@@ -38,7 +39,7 @@ export const GROUP = {
     combat: { id: 'combat', name: 'tokenActionHud.combat', type: 'system' },
     token: { id: 'token', name: 'tokenActionHud.token', type: 'system' },
     utility: { id: 'utility', name: 'tokenActionHud.utility', type: 'system' },
-    skills: {id: 'skills', name: 'tokenActionHud.t20.pericias', type: 'system'}
+    skills: {id: 'skills', name: 'tokenActionHud.t20.skills', type: 'system'}
 }
 
 /**
