@@ -1,5 +1,5 @@
 // System Module Imports
-import { ACTION_TYPE, ITEM_TYPE, GROUP } from './constants.js'
+import { ACTION_TYPE, ITEM_TYPE, GROUP, FEATURE_TYPE } from './constants.js'
 import { Utils } from './utils.js'
 
 export let ActionHandler = null
@@ -44,6 +44,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         #buildCharacterActions () {
             this.#buildInventory()
             this.#buildPericias()
+            this.#buildFeatures()
         }
 
         /**
@@ -129,5 +130,50 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
                 this.addActions(actions, groupData)
             }
         }
+
+
+        async #buildFeatures () {
+            if (this.items.size == 0) return
+            const actionTypeId = 'item'
+            const featureMap = new Map()
+
+            for (const [itemId, itemData ] of this.items) {
+                const type = itemData.type
+                typeMap.set(itemId, itemData)
+                featureMap.set(type, typeMap)
+            }
+
+            for (const [type, typeMap] of featureMap) {
+                const groupId = FEATURE_TYPE[type]?.groupId
+
+                if (!groupId) continue
+                
+                const groupData = { id: groupId, type: 'system'}
+
+                const actions = [...typeMap].map(([itemId, itemData]) => {
+                    const id = itemId
+                    const name = itemData.name
+                    const actionTypeName = coreModule.api.Utils.i18n(ACTION_TYPE[actionTypeId])
+                    const listName = `${actionTypeName ? `${actionTypeName}: ` : ''}${name}`
+                    const encodedValue = [actionTypeId, id].join(this.delimiter)
+
+                    return {
+                        id,
+                        name,
+                        listName,
+                        encodedValue
+                    }
+                })
+                this.addActions(actions, groupData)
+            }
+        }
+
+        //async #buildFeatures () {
+        //    if (this.items.size == 0) return 
+        //    const actionTypeId = 'item'
+        //    const featureMap = new Map()
+
+
+        //}
     }
 })

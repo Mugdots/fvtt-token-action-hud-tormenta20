@@ -23,7 +23,8 @@ export const REQUIRED_CORE_MODULE_VERSION = '2.0'
 export const ACTION_TYPE = {
     item: 'tokenActionHud.t20.item',
     utility: 'tokenActionHud.utility',
-    atributes: 'tokenActionHud.atributes'
+    atributes: 'tokenActionHud.atributes',
+    features: 'tokenActionHud.features'
 }
 
 /**
@@ -39,12 +40,19 @@ export const GROUP = {
     combat: { id: 'combat', name: 'tokenActionHud.combat', type: 'system' },
     token: { id: 'token', name: 'tokenActionHud.token', type: 'system' },
     utility: { id: 'utility', name: 'tokenActionHud.utility', type: 'system' },
-    skills: {id: 'skills', name: 'tokenActionHud.t20.skills', type: 'system'}
+    skills: {id: 'skills', name: 'tokenActionHud.t20.skills', type: 'system'},
+    poderes: {id: 'poderes', name: 'tokenActionHud.t20.poderes', type: 'system'}
 }
 
 /**
  * Item types
  */
+
+
+export const FEATURE_TYPE = {
+    poderes: { groupId: 'poderes' }
+}
+
 export const ITEM_TYPE = {
     armor: { groupId: 'armor' },
     backpack: { groupId: 'containers' },
