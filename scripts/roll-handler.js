@@ -68,6 +68,12 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
          */
         async #handleAction (event, actor, token, actionTypeId, actionId) {
             switch (actionTypeId) {
+            case 'pericia':
+                this.rollSkill(event, actor, actionId); 
+                break
+            case 'atributo':
+                this.rollAtributo(event, actor, actionId);
+                break
             case 'item':
                 this.#handleItemAction(event, actor, actionId)
                 break
@@ -103,6 +109,16 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
                 }
                 break
             }
+        }
+
+        rollSkill(event, actor, actionId) {
+            if (!actor.system?.pericias) return;
+            actor.rollPericia(actionId, {event: event});
+        }
+
+        rollAtributo(event, actor, actionId) {
+            if (!actor.system?.atributos) return;
+            actor.rollAtributo(actionId, {event: event});
         }
     }
 })

@@ -1,5 +1,6 @@
 // System Module Imports
-import { ACTION_TYPE, ITEM_TYPE, GROUP, FEATURE_TYPE } from './constants.js'
+import { ACTION_TYPE, ITEM_TYPE, GROUP, PROFICIENCY_LEVEL_ICON, FEATURE_TYPE } from './constants.js'
+
 import { Utils } from './utils.js'
 
 export let ActionHandler = null
@@ -28,6 +29,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
                 let items = this.actor.items
                 items = coreModule.api.Utils.sortItemsByName(items)
                 this.items = items
+                console.log(items);
             }
 
             if (this.actorType === 'character') {
@@ -60,13 +62,40 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
          * @private
          * @param {string} groupId
          */
+
+        #buildAtributos () {
+             const atributos = this.actor?.system.atributos || CONFIG.T20.atributos;
+            
+            if (atributos.length === 0) return;
+
+            const actionType = "atributo";
+            // Pegar Ações
+            const actions = Object.entries(atributos)
+            .map(([id, atributo]) => {
+                const name = CONFIG.T20.atributos[id];
+                const encodedValue = [actionType, id].join(this.delimiter)
+
+                return {
+                    id: id,
+                    name: name,
+                    info1: (this.actor) ? { text: coreModule.api.Utils.getModifier(atributo.value) } : "",
+                    listName: name,
+                    encodedValue,
+                    system: { actionType, actionId: id }
+                }
+            }).filter(atributo => !!atributo);
+            
+        this.addActions(actions, GROUP.atributos);
+
+        }
+
         #buildPericias () {
         
             const pericias = this.actor?.system.pericias || CONFIG.T20.pericias;
             
             if (pericias.length === 0) return;
 
-            const actionType = "atributes";
+            const actionType = "pericia";
             // Pegar Ações
             const actions = Object.entries(pericias)
             .map(([id, pericia]) => {
@@ -76,13 +105,15 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
                 return {
                     id: id,
                     name: pericia.label,
+                    icon1: this.#getProficiencyIcon(pericia.treinado),
+                    info1: (this.actor) ? { text: coreModule.api.Utils.getModifier(pericia.value) } : "",
                     listName: name,
                     encodedValue,
                     system: { actionType, actionId: id }
                 }
             }).filter(pericia => !!pericia);
             
-        this.addActions(actions, GROUP.skills);
+        this.addActions(actions, GROUP.pericias);
     }
 
 
@@ -95,7 +126,6 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
             for (const [itemId, itemData] of this.items) {
                 const type = itemData.type
                 const equipped = itemData.equipped
-
                 if (equipped || this.displayUnequipped) {
                     const typeMap = inventoryMap.get(type) ?? new Map()
                     typeMap.set(itemId, itemData)
@@ -105,7 +135,6 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
 
             for (const [type, typeMap] of inventoryMap) {
                 const groupId = ITEM_TYPE[type]?.groupId
-
                 if (!groupId) continue
 
                 const groupData = { id: groupId, type: 'system' }
@@ -175,5 +204,16 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
 
 
         //}
+        /**
+         * @param {boolean} treinado 
+         * @returns {string}
+         */
+
+
+        #getProficiencyIcon(treinado) {
+            const title = treinado ? "treinado" : "não treinado";
+            const icon = PROFICIENCY_LEVEL_ICON[treinado];
+            return (icon) ? `<i class="${icon}" title=t20."${title}"></i>` : "";
+        }
     }
 })
