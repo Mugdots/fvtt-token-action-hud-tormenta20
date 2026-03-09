@@ -16,25 +16,26 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
     DEFAULTS = {
         layout: [
             {
-                nestId: 'atributes',
-                id: 'atributes',
-                name: coreModule.api.Utils.i18n('t20.atributes'),
+                nestId: 'skill',
+                id: 'skill',
+                name: coreModule.api.Utils.i18n('tokenActionHud.t20.skill'),
                 groups: [
-                    { ...groups.skills, nestId: 'atributes_skills'}
+                    { ...groups.atributos, nestId: 'skill_atributos'},
+                    { ...groups.pericias, nestId: 'skill_pericias'}
                 ]
 
             },
             {
                 nestId: 'inventory',
                 id: 'inventory',
-                name: coreModule.api.Utils.i18n('t20.Inventory'),
+                name: coreModule.api.Utils.i18n('tokenActionHud.t20.inventory'),
                 groups: [
-                    { ...groups.weapons, nestId: 'inventory_weapons' },
-                    { ...groups.armor, nestId: 'inventory_armor' },
-                    { ...groups.equipment, nestId: 'inventory_equipment' },
-                    { ...groups.consumables, nestId: 'inventory_consumables' },
-                    { ...groups.containers, nestId: 'inventory_containers' },
-                    { ...groups.treasure, nestId: 'inventory_treasure' }
+                    { ...groups.arma, nestId: 'inventory_arma' },
+                    //{ ...groups.armor, nestId: 'inventory_armor' },
+                    { ...groups.equipamento, nestId: 'inventory_equipamento' },
+                    { ...groups.consumivel, nestId: 'inventory_consumivel' },
+                    //{ ...groups.containers, nestId: 'inventory_containers' },
+                    { ...groups.tesouro, nestId: 'inventory_tesouro' }
                 ]
             },
             {

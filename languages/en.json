@@ -1,7 +1,10 @@
 {
   "tokenActionHud": {
-    "template": {
+    "t20": {
       "armor": "Armor",
+      "atributes": "Atributes",
+      "skills": "Skills",
+      "skill": "Skill",
       "containers": "Containers",
       "consumables": "Consumables",
       "equipment": "Equipment",

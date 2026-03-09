@@ -1,10 +1,13 @@
 {
   "tokenActionHud": {
-    "template": {
+    "t20": {
       "armor": "Armadura",
       "containers": "Containers",
       "consumables": "Consumíveis",
       "equipment": "Equipamento",
+      "atributes": "Atributos",
+      "skills": "Péricias",
+      "skill": "Péricia",
       "inventory": "Inventário",
       "item": "Item",
       "weapons": "Armas",
