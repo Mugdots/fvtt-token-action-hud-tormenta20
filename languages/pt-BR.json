@@ -11,6 +11,14 @@
       "inventory": "Inventário",
       "item": "Item",
       "weapons": "Armas",
+      "features": "Caracteristica",
+      "powers": "Poderes",
+      "1oCirculoMagias": "Magia de 1º Círculo",
+      "2oCirculoMagias": "Magia de 2º Círculo",
+      "3oCirculoMagias": "Magia de 3º Círculo",
+      "4oCirculoMagias": "Magia de 4º Círculo",
+      "5oCirculoMagias": "Magia de 5º Círculo",
+      "spell": "magia",
       "treasure": "Tesouro",
       "settings": {
         "displayUnequipped": {

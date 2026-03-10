@@ -16,6 +16,16 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
     DEFAULTS = {
         layout: [
             {
+                nestId: 'feature',
+                id: 'feature',
+                name: coreModule.api.Utils.i18n('tokenActionHud.t20.features'),
+                groups: [
+                    { ...groups.poder, nestId: 'feature_poder'}
+                ]
+
+            },
+
+            {
                 nestId: 'skill',
                 id: 'skill',
                 name: coreModule.api.Utils.i18n('tokenActionHud.t20.skill'),
@@ -24,6 +34,19 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
                     { ...groups.pericias, nestId: 'skill_pericias'}
                 ]
 
+            },
+
+            {
+                nestId: 'spell',
+                id: 'spell',
+                name: coreModule.api.Utils.i18n('tokenActionHud.t20.spell'),
+                groups: [
+                    {...groups._1oCirculoMagias, nestId: 'spell_1o-circulo-magias'},
+                    {...groups._2oCirculoMagias, nestId: 'spell_2o-circulo-magias'}, 
+                    {...groups._3oCirculoMagias, nestId: 'spell_3o-circulo-magias'},
+                    {...groups._4oCirculoMagias, nestId: 'spell_4o-circulo-magias'},
+                    {...groups._5oCirculoMagias, nestId: 'spell_5o-circulo-magias'}
+                ]
             },
             {
                 nestId: 'inventory',

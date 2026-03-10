@@ -1,5 +1,5 @@
 // System Module Imports
-import { ACTION_TYPE, ITEM_TYPE, GROUP, PROFICIENCY_LEVEL_ICON } from './constants.js'
+import { ACTION_TYPE, ITEM_TYPE, GROUP, PROFICIENCY_LEVEL_ICON, FEATURE_TYPE, GRUPO_MAGIA_IDS} from './constants.js'
 import { Utils } from './utils.js'
 
 export let ActionHandler = null
@@ -46,6 +46,8 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
             this.#buildInventory()
             this.#buildPericias()
             this.#buildAtributos()
+            this.#buildFeatures()
+            this.#buildSpells()
         }
 
         /**
@@ -149,6 +151,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
                     return {
                         id,
                         name,
+                        img: coreModule.api.Utils.getImage(itemData),
                         listName,
                         encodedValue
                     }
@@ -159,17 +162,117 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
             }
         }
 
+        async #buildFeatures () {
+            if (this.items.size == 0) return
+
+            const actionTypeId = 'item'
+            const featureMap = new Map()
+
+            for (const [itemId, itemData ] of this.items) {
+                const type = itemData.type
+                const typeMap = featureMap.get(type) ?? new Map()
+                typeMap.set(itemId, itemData)
+                featureMap.set(type, typeMap)
+            }
+
+            for (const [type, typeMap] of featureMap) {
+                const groupId = FEATURE_TYPE[type]?.groupId
+                if (!groupId) continue
+                console.log(typeMap);
+                
+                const groupData = { id: groupId, type: 'system'}
+
+                const actions = [...typeMap].map(([itemId, itemData]) => {
+                    const id = itemId
+                    const name = itemData.name
+                    const actionTypeName = coreModule.api.Utils.i18n(ACTION_TYPE[actionTypeId])
+                    const listName = `${actionTypeName ? `${actionTypeName}: ` : ''}${name}`
+                    const encodedValue = [actionTypeId, id].join(this.delimiter)
+
+                    return {
+                        id,
+                        name,
+                        img: coreModule.api.Utils.getImage(itemData),
+                        icon1: this.#getManaCostIcon(itemData.system.ativacao.custo),
+                        listName,
+                        encodedValue
+                    }
+                })
+                this.addActions(actions, groupData)
+            }
+        }
+
+        async #buildSpells () {
+            const spells = new Map([...this.items].filter(([, value]) => value.type === "magia"));
+            if (spells.size === 0) return;
+
+            // Inicializa o mapa de categorias das magias
+            const actionTypeId = 'spell'
+            const spellsMap = new Map([
+                ["_1oCirculoMagias", new Map()],
+                ["_2oCirculoMagias", new Map()],
+                ["_3oCirculoMagias", new Map()],
+                ["_4oCirculoMagias", new Map()],
+                ["_5oCirculoMagias", new Map()]
+            ]);
+
+            for (const [key, value] of spells) {
+                switch (value.system.circulo) {
+                    case 1:
+                        spellsMap.get("_1oCirculoMagias").set(key, value); break;
+                    case 2:
+                        spellsMap.get("_2oCirculoMagias").set(key, value); break;   
+                    case 3:
+                        spellsMap.get("_3oCirculoMagias").set(key, value); break;
+                    case 4: 
+                        spellsMap.get("_4oCirculoMagias").set(key, value); break;
+                    case 5: 
+                        spellsMap.get("_5oCirculoMagias").set(key, value); break;
+                }
+            }
+
+            for (const id of GRUPO_MAGIA_IDS) {
+                const actionData = spellsMap.get(id)
+                if (actionData.size === 0) continue
+                const groupData = {
+                    id: GROUP[id].id,
+                    name: GROUP[id].name
+                }
+                const actions = [...actionData].map(([itemId, itemData]) => {
+                    const id = itemId
+                    const name = itemData.name
+                    const actionTypeName = coreModule.api.Utils.i18n(ACTION_TYPE[actionTypeId])
+                    const listName = `${actionTypeName ? `${actionTypeName}: ` : ''}${name}`
+                    const encodedValue = [actionTypeId, id].join(this.delimiter)
+
+                    console.log(itemData);
+                    return {
+                        id,
+                        name,
+                        img: coreModule.api.Utils.getImage(itemData),
+                        icon1: this.#getManaCostIcon(itemData.system.ativacao.custo),
+                        listName,
+                        encodedValue
+                    }
+                })
+                this.addActions(actions, groupData)
+            }
+        }
+
 
         /**
          * @param {boolean} treinado 
          * @returns {string}
          */
-
+        #getManaCostIcon(custoPM) {     
+            return (custoPM) ? `<div class="numero-custo-pm">${custoPM}<div class="custo-pm"> PM</div></div>` : "";
+        }
 
         #getProficiencyIcon(treinado) {
             const title = treinado ? "treinado" : "não treinado";
             const icon = PROFICIENCY_LEVEL_ICON[treinado];
             return (icon) ? `<i class="${icon}" title=t20."${title}"></i>` : "";
         }
+
     }
 })
