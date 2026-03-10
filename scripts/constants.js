@@ -46,6 +46,7 @@ export const GROUP = {
     combat: { id: 'combat', name: 'tokenActionHud.combat', type: 'system' },
     token: { id: 'token', name: 'tokenActionHud.token', type: 'system' },
     utility: { id: 'utility', name: 'tokenActionHud.utility', type: 'system' },
+    poderes: {id: 'poderes', name: 'tokenActionHud.t20.poderes', type: 'system'},
     pericias: {id: 'pericias', name: 'tokenActionHud.t20.skills', type: 'system'},
     atributos: {id: 'atributos', name: 'tokenActionHud.t20.atributes', type: 'system'},
     poder: {id: 'poder', name: 'tokenActionHud.t20.powers', type: 'system'}
@@ -54,6 +55,12 @@ export const GROUP = {
 /**
  * Item types
  */
+
+
+export const FEATURE_TYPE = {
+    poderes: { groupId: 'poderes' }
+}
+
 export const ITEM_TYPE = {
     //armor: { groupId: 'armor' },
     //backpack: { groupId: 'containers' },

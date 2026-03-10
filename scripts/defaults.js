@@ -10,7 +10,6 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
     Object.values(groups).forEach(group => {
         group.name = coreModule.api.Utils.i18n(group.name)
         group.listName = `Group: ${coreModule.api.Utils.i18n(group.listName ?? group.name)}`
-        console.log(`Aqui | Esse é o Grupo: ${group.listName}`);
     })
     const groupsArray = Object.values(groups)
     DEFAULTS = {
