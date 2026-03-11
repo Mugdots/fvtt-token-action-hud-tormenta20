@@ -90,6 +90,11 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
 
         }
 
+        
+        /**
+         * Build Pericias
+         * @private
+         */
         #buildPericias () {
         
             const pericias = this.actor?.system.pericias || CONFIG.T20.pericias;
@@ -117,7 +122,10 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         this.addActions(actions, GROUP.pericias);
     }
 
-
+          /**
+         * Build Inventário
+         * @private
+         */
         async #buildInventory () {
             if (this.items.size === 0) return
 
@@ -162,7 +170,12 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
             }
         }
 
+        /**
+         * Build Features
+         * @private
+         */
         async #buildFeatures () {
+            const poderes = new Map([...this.items].filter(([, value]) => value.type === "poder"));
             if (this.items.size == 0) return
 
             const actionTypeId = 'item'

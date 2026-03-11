@@ -34,7 +34,6 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
                 ]
 
             },
-
             {
                 nestId: 'spell',
                 id: 'spell',
@@ -53,10 +52,8 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
                 name: coreModule.api.Utils.i18n('tokenActionHud.t20.inventory'),
                 groups: [
                     { ...groups.arma, nestId: 'inventory_arma' },
-                    //{ ...groups.armor, nestId: 'inventory_armor' },
                     { ...groups.equipamento, nestId: 'inventory_equipamento' },
                     { ...groups.consumivel, nestId: 'inventory_consumivel' },
-                    //{ ...groups.containers, nestId: 'inventory_containers' },
                     { ...groups.tesouro, nestId: 'inventory_tesouro' }
                 ]
             },
