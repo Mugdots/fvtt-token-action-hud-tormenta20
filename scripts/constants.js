@@ -25,6 +25,7 @@ export const ACTION_TYPE = {
     utility: 'tokenActionHud.utility',
     pericia: 'tokenActionHud.skill',
     atributo: 'tokenActionHud.atribute',
+    pericia_oficio: 'tokenActionHud.pericia_oficio',
     feature: 'tokenActionHud.feature',
     spell: 'tokenActionHud.spell'
 }
@@ -40,7 +41,6 @@ export const GROUP = {
     _5oCirculoMagias: { id: "5o-circulo-magias", name: "tokenActionHud.t20.5oCirculoMagias", circulo: 5, type: "system"},
     equipamento: { id: 'equipamento', name: 'tokenActionHud.t20.equipment', type: 'system' },
     consumivel: { id: 'consumivel', name: 'tokenActionHud.t20.consumables', type: 'system' },
-    //containers: { id: 'containers', name: 'tokenActionHud.t20.containers', type: 'system' },
     tesouro: { id: 'tesouro', name: 'tokenActionHud.t20.treasure', type: 'system' },
     arma: { id: 'arma', name: 'tokenActionHud.t20.weapons', type: 'system' },
     combat: { id: 'combat', name: 'tokenActionHud.combat', type: 'system' },
@@ -48,6 +48,8 @@ export const GROUP = {
     utility: { id: 'utility', name: 'tokenActionHud.utility', type: 'system' },
     poderes: {id: 'poderes', name: 'tokenActionHud.t20.poderes', type: 'system'},
     pericias: {id: 'pericias', name: 'tokenActionHud.t20.skills', type: 'system'},
+    pericias_oficio: {id: 'pericias-oficio', name: 'tokenActionHud.t20.skillsCraft', type: 'system'},
+    pericias_salvamento: {id: 'pericias-salvamento', name: 'tokenActionHud.t20.skillsSavingThrow', type: 'system'},
     atributos: {id: 'atributos', name: 'tokenActionHud.t20.atributes', type: 'system'},
     poder: {id: 'poder', name: 'tokenActionHud.t20.powers', type: 'system'}
 }
@@ -55,11 +57,11 @@ export const GROUP = {
 /**
  * Item types
  */
-
-
-export const FEATURE_TYPE = {
-    poderes: { groupId: 'poderes' }
-}
+export const PERICIAS_IDS = [
+    "pericias_salvamento",
+    "pericias_oficio",
+    "pericias"
+]
 
 export const ITEM_TYPE = {
     //armor: { groupId: 'armor' },

@@ -1,5 +1,5 @@
 // System Module Imports
-import { ACTION_TYPE, ITEM_TYPE, GROUP, PROFICIENCY_LEVEL_ICON, FEATURE_TYPE, GRUPO_MAGIA_IDS} from './constants.js'
+import { ACTION_TYPE, ITEM_TYPE, GROUP, PROFICIENCY_LEVEL_ICON, FEATURE_TYPE, GRUPO_MAGIA_IDS, PERICIAS_IDS} from './constants.js'
 import { Utils } from './utils.js'
 
 export let ActionHandler = null
@@ -28,7 +28,6 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
                 let items = this.actor.items
                 items = coreModule.api.Utils.sortItemsByName(items)
                 this.items = items
-                console.log(items);
             }
 
             if (this.actorType === 'character') {
@@ -44,10 +43,10 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
          */
         #buildCharacterActions () {
             this.#buildInventory()
+            this.#buildSpells()
             this.#buildPericias()
             this.#buildAtributos()
             this.#buildFeatures()
-            this.#buildSpells()
         }
 
         /**
@@ -90,32 +89,54 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
 
         }
 
-        #buildPericias () {
-        
+        #buildPericias () {     
             const pericias = this.actor?.system.pericias || CONFIG.T20.pericias;
             
             if (pericias.length === 0) return;
+            const periciasMap = new Map([
+                ["pericias_salvamento", new Map()],
+                ["pericias_oficio", new Map()],
+                ["pericias", new Map()]
+            ]);
+            const actionTypeId = 'skill'
+            for (const [key, value] of (Object.entries(pericias))) {
+                const craftlabel = (value.label)
+                const savingThrow = ["Reflexos", "Fortitude", "Vontade"];
+                if (craftlabel.includes("Ofício:")) {
+                    periciasMap.get("pericias_oficio").set(key, value);
+                } else if (savingThrow.some(str => str === craftlabel)){
+                    periciasMap.get("pericias_salvamento").set(key, value);
+                } else {
+                    periciasMap.get("pericias").set(key, value);
+                }
+            }
+            console.log(periciasMap)
+            for(const id of PERICIAS_IDS) {
 
-            const actionType = "pericia";
-            // Pegar Ações
-            const actions = Object.entries(pericias)
-            .map(([id, pericia]) => {
-                const name = CONFIG.T20.pericias[id].label;
-                const encodedValue = [actionType, id].join(this.delimiter)
+                const groupData = {
+                    id: GROUP[id].id,
+                    name: GROUP[id].name
+                }
+                const actionData = periciasMap.get(id);
+                if (actionData.size === 0) continue;
+
+                const actions =[...actionData].map(([itemId, itemData]) => {
+                const name = CONFIG.T20.pericias[id];
+                const encodedValue = [actionTypeId, id].join(this.delimiter)
 
                 return {
-                    id: id,
-                    name: pericia.label,
-                    icon1: this.#getProficiencyIcon(pericia.treinado),
-                    info1: (this.actor) ? { text: coreModule.api.Utils.getModifier(pericia.value) } : "",
+                    id: itemId,
+                    name: itemData.label,
+                    icon1: this.#getProficiencyIcon(itemData.treinado),
+                    info1: (this.actor) ? { text: coreModule.api.Utils.getModifier(itemData.value) } : "",
                     listName: name,
                     encodedValue,
-                    system: { actionType, actionId: id }
+                    system: { actionTypeId, actionId: id }
                 }
             }).filter(pericia => !!pericia);
             
-        this.addActions(actions, GROUP.pericias);
-    }
+            this.addActions(actions, groupData);
+        }}
 
 
         async #buildInventory () {
@@ -178,7 +199,6 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
             for (const [type, typeMap] of featureMap) {
                 const groupId = FEATURE_TYPE[type]?.groupId
                 if (!groupId) continue
-                console.log(typeMap);
                 
                 const groupData = { id: groupId, type: 'system'}
 
@@ -205,7 +225,6 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         async #buildSpells () {
             const spells = new Map([...this.items].filter(([, value]) => value.type === "magia"));
             if (spells.size === 0) return;
-
             // Inicializa o mapa de categorias das magias
             const actionTypeId = 'spell'
             const spellsMap = new Map([
@@ -230,7 +249,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
                         spellsMap.get("_5oCirculoMagias").set(key, value); break;
                 }
             }
-
+            console.log(spellsMap);
             for (const id of GRUPO_MAGIA_IDS) {
                 const actionData = spellsMap.get(id)
                 if (actionData.size === 0) continue
@@ -244,8 +263,6 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
                     const actionTypeName = coreModule.api.Utils.i18n(ACTION_TYPE[actionTypeId])
                     const listName = `${actionTypeName ? `${actionTypeName}: ` : ''}${name}`
                     const encodedValue = [actionTypeId, id].join(this.delimiter)
-
-                    console.log(itemData);
                     return {
                         id,
                         name,
@@ -258,50 +275,6 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
                 this.addActions(actions, groupData)
             }
         }
-
-
-        async #buildFeatures () {
-            if (this.items.size == 0) return
-            const actionTypeId = 'item'
-            const featureMap = new Map()
-
-            for (const [itemId, itemData ] of this.items) {
-                const type = itemData.type
-                typeMap.set(itemId, itemData)
-                featureMap.set(type, typeMap)
-            }
-
-            for (const [type, typeMap] of featureMap) {
-                const groupId = FEATURE_TYPE[type]?.groupId
-
-                if (!groupId) continue
-                
-                const groupData = { id: groupId, type: 'system'}
-
-                const actions = [...typeMap].map(([itemId, itemData]) => {
-                    const id = itemId
-                    const name = itemData.name
-                    const actionTypeName = coreModule.api.Utils.i18n(ACTION_TYPE[actionTypeId])
-                    const listName = `${actionTypeName ? `${actionTypeName}: ` : ''}${name}`
-                    const encodedValue = [actionTypeId, id].join(this.delimiter)
-
-                    return {
-                        id,
-                        name,
-                        listName,
-                        encodedValue
-                    }
-                })
-                this.addActions(actions, groupData)
-            }
-        }
-
-        //async #buildFeatures () {
-        //    if (this.items.size == 0) return 
-        //    const actionTypeId = 'item'
-        //    const featureMap = new Map()
-
-
         //}
         /**
          * @param {boolean} treinado 

@@ -30,7 +30,8 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
                 name: coreModule.api.Utils.i18n('tokenActionHud.t20.skill'),
                 groups: [
                     { ...groups.atributos, nestId: 'skill_atributos'},
-                    { ...groups.pericias, nestId: 'skill_pericias'}
+                    { ...groups.pericias, nestId: 'skill_pericias'},
+                    { ...groups.pericias_oficio, nestId: 'skill_oficio'}
                 ]
 
             },
