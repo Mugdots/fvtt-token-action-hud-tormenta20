@@ -72,10 +72,6 @@ export const ITEM_TYPE = {
     arma: { groupId: 'arma' }
 }
 
-export const FEATURE_TYPE = {
-    poder: { groupId: 'poder'}
-}
-
 export const PROFICIENCY_LEVEL_ICON = {
     false: "fa-regular fa-circle",
     true: "fa-solid fa-circle"

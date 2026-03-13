@@ -70,29 +70,23 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
             switch (actionTypeId) {
             case 'pericia':
                 this.rollSkill(event, actor, actionId); 
-                break
+                break;
             case 'atributo':
                 this.rollAtributo(event, actor, actionId);
-                break
+                break;
+            case 'feature':
             case 'item':
-                this.#handleItemAction(event, actor, actionId)
-                break
+            case 'spell':
+            case 'arma':
+                if (this.isRenderItem()) this.renderItem(actor, actionId);
+                else this.useItem(event, actor, actionId);
+                break;
+            case 'iniciative':
+                this.rollIniciative(event, actor, actionId);
             case 'utility':
                 this.#handleUtilityAction(token, actionId)
-                break
+                break;
             }
-        }
-
-        /**
-         * Handle item action
-         * @private
-         * @param {object} event    The event
-         * @param {object} actor    The actor
-         * @param {string} actionId The action id
-         */
-        #handleItemAction (event, actor, actionId) {
-            const item = actor.items.get(actionId)
-            item.toChat(event)
         }
 
         /**
@@ -116,9 +110,37 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
             actor.rollPericia(actionId, {event: event});
         }
 
+        rollIniciative(event, actor, actionId) {
+            if (!actor.system?.pericias) return;
+            actor.rollIniciativa(actionId, {event: event});
+        }
+
         rollAtributo(event, actor, actionId) {
             if (!actor.system?.atributos) return;
             actor.rollAtributo(actionId, {event: event});
+        }
+
+        useItem(event, actor, actionId) {
+            const item = coreModule.api.Utils.getItem(actor, actionId);
+            item.use({event, legacy: false});
+        }
+
+        async handleActionHover(event) {
+            const type = ["feature", "item", "spell", "arma"];
+
+            if(!this.actor || !this.action?.system?.actionid) return;
+
+            const {actionType, actionId} = this.action.system;
+
+            if (!type.includes(actionType)) return;
+            const item = coreModule.api.Utils.getItem(this.actor, actionId);
+
+            if (this.isHover) {
+                Hooks.call("tokenActionHudSystemActionHoverOn", event, item);
+            } else {
+                Hooks.call("tokenActionHudSystemActionHoverOff", event, item);
+            }
+
         }
     }
 })
