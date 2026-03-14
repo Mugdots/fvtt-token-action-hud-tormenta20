@@ -1,78 +1,63 @@
 {
   "id": "token-action-hud-t20",
   "title": "Token Action HUD Tormenta20",
-  "description": "Token Action HUD is a repositionable HUD of actions for a selected token",
+  "description": "<p>Token Action HUD is a repositionable HUD of actions for a selected token</p>",
   "authors": [
     {
       "name": "Mugdots",
-      "url": "https://github.com/Mugdots"
+      "url": "https://github.com/Mugdots",
+      "flags": {}
     }
   ],
-  "url": "This is auto replaced",
-  "flags": {},
-  "version": "This is auto replaced",
+  "url": "https://github.com/Mugdots/fvtt-token-action-hud-tormenta20",
+  "version": "1.0.0",
   "compatibility": {
     "minimum": "13",
     "verified": "13"
   },
   "esmodules": [
-    "./scripts/init.js"
-  ],
-  "scripts": [
+    "scripts/init.js"
   ],
   "styles": [
-    "./styles/tah-t20-style.css"
+    {
+      "src": "styles/tah-t20-style.css"
+    }
   ],
   "languages": [
     {
       "lang": "en",
       "name": "English",
-      "path": "languages/en.json"
+      "path": "languages/en.json",
+      "flags": {}
     },
     {
       "lang": "pt-BR",
       "name": "Português (Brasil)",
-      "path": "languages/pt-BR.json"
+      "path": "languages/pt-BR.json",
+      "flags": {}
     }
   ],
-  "packs": [],
   "relationships": {
     "systems": [
       {
         "id": "tormenta20",
         "type": "system",
-        "compatibility": [
-          {
-          "minimum": "1.5.015",
-          "maximum": "1.5.015",
-          "verified": "1.5.015"
-          }
-        ]
+        "compatibility": {}
       }
     ],
     "requires": [
       {
         "id": "token-action-hud-core",
         "type": "module",
-        "compatibility": [
-          {
-          "minimum": "2.0.11",
-          "maximum": "2.0.99",
-          "verified": "2.0.16"
-          }
-        ] 
+        "compatibility": {}
       }
     ],
-    "optional": [],
     "flags": {
       "optional": []
     }
   },
-  "socket": false,
   "manifest": "This is auto replaced",
   "download": "This is auto replaced",
   "readme": "https://github.com/Larkinabout/fvtt-token-action-hud-tormenta20#readme",
-  "protected": false,
-  "coreTranslation": false,
-  "library": false
+  "flags": {}
 }
