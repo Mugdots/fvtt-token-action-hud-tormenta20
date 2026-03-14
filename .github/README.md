@@ -1,4 +1,4 @@
-![Downloads](https://img.shields.io/github/downloads/Larkinabout/fvtt-token-action-hud-template/latest/module.zip?color=2b82fc&label=DOWNLOADS&style=for-the-badge) [![Forge Installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Ftoken-action-hud-template&colorB=448d34&style=for-the-badge)](https://forge-vtt.com/bazaar#package=token-action-hud-template)
+![Downloads](https://img.shields.io/github/downloads/Larkinabout/fvtt-token-action-hud-t20/latest/module.zip?color=2b82fc&label=DOWNLOADS&style=for-the-badge) [![Forge Installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Ftoken-action-hud-template&colorB=448d34&style=for-the-badge)](https://forge-vtt.com/bazaar#package=token-action-hud-template)
 
 # Token Action HUD T20
 
@@ -18,18 +18,20 @@ Token Action HUD is a repositionable HUD of actions for a selected token.
 ## Method 1
 1. On Foundry VTT's **Configuration and Setup** screen, go to **Add-on Modules**
 2. Click **Install Module**
-3. Search for **Token Action HUD Pathfinder 2** 
+3. Search for **Token Action HUD Tormenta 20** 
 4. Click **Install** next to the module listing
 
 ## Method 2
 1. On Foundry VTT's **Configuration and Setup** screen, go to **Add-on Modules**
 2. Click **Install Module**
-3. In the Manifest URL field, paste: `https://github.com/Larkinabout/fvtt-token-action-hud-template/releases/latest/download/module.json`
+3. In the Manifest URL field, paste: `https://github.com/Mugdots/fvtt-token-action-hud-tormenta20/releases/latest/download/module.json`
 4. Click **Install** next to the pasted Manifest URL
 
 ## Required Modules
 
-**IMPORTANT** - Token Action HUD Template requires the [Token Action HUD Core](https://foundryvtt.com/packages/token-action-hud-core) module to be installed.
+**Token Action Hud Core** - Token Action HUD T20 requires the [Token Action HUD Core](https://foundryvtt.com/packages/token-action-hud-core) module to be installed.
+
+**sockelib** - Token Action HUD Core requires the [socketlib](https://foundryvtt.com/packages/socketlib) library module.
 
 ## Recommended Modules
 Token Action HUD uses the [Color Picker](https://foundryvtt.com/packages/color-picker) library module for its color picker settings.
@@ -44,7 +46,8 @@ Pull requests are welcome. Please include a reason for the request or create an 
 
 # Acknowledgements
 
-Thank you to the Community Helpers on Foundry's Discord who provide tireless support for people seeking help with the HUD.
+Thank you to the Community Helpers on Foundry's Discord who provide tireless support for people seeking help with the HUD. 
+And Thanks to larkinabout to make token action hud 5e and token action template to help to configure and develop this module.
 
 # License
 
