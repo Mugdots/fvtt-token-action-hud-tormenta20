@@ -15,11 +15,23 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
     DEFAULTS = {
         layout: [
             {
+                nestId: 'inventory',
+                id: 'inventory',
+                name: coreModule.api.Utils.i18n('tokenActionHud.t20.inventory'),
+                groups: [
+                    { ...groups.arma, nestId: 'inventory_arma' },
+                    { ...groups.equipamento, nestId: 'inventory_equipamento' },
+                    { ...groups.consumivel, nestId: 'inventory_consumivel' },
+                    { ...groups.tesouro, nestId: 'inventory_tesouro' }
+                ]
+            },
+            {
                 nestId: 'feature',
                 id: 'feature',
                 name: coreModule.api.Utils.i18n('tokenActionHud.t20.features'),
                 groups: [
-                    { ...groups.poder, nestId: 'feature_poder'}
+                    { ...groups.poder_ativo, nestId: 'feature_poder-ativo'},
+                    { ...groups.poder_passivo, nestId: 'feature_poder-passivo'}
                 ]
 
             },
@@ -30,6 +42,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
                 name: coreModule.api.Utils.i18n('tokenActionHud.t20.skill'),
                 groups: [
                     { ...groups.atributos, nestId: 'skill_atributos'},
+                    { ...groups.pericias_salvamento, nestId: 'skill_salvaguarda'},
                     { ...groups.pericias, nestId: 'skill_pericias'},
                     { ...groups.pericias_oficio, nestId: 'skill_oficio'}
                 ]
@@ -48,16 +61,17 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
                 ]
             },
             {
-                nestId: 'inventory',
-                id: 'inventory',
-                name: coreModule.api.Utils.i18n('tokenActionHud.t20.inventory'),
+                nestId: 'effect',
+                id: 'effect',
+                name: coreModule.api.Utils.i18n('tokenActionHud.t20.effect'),
                 groups: [
-                    { ...groups.arma, nestId: 'inventory_arma' },
-                    { ...groups.equipamento, nestId: 'inventory_equipamento' },
-                    { ...groups.consumivel, nestId: 'inventory_consumivel' },
-                    { ...groups.tesouro, nestId: 'inventory_tesouro' }
+                    {...groups.efeito_passivos, nestId: 'effect_efeitos-passivos'},
+                    {...groups.efeito_temporarios, nestId: 'effect_efeitos-temporarios'},
+                    {...groups.condicoes, nestId: 'effect_condicoes'}
                 ]
+
             },
+
             {
                 nestId: 'utility',
                 id: 'utility',
@@ -65,8 +79,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
                 groups: [
                     { ...groups.combat, nestId: 'utility_combat' },
                     { ...groups.token, nestId: 'utility_token' },
-                    { ...groups.rests, nestId: 'utility_rests' },
-                    { ...groups.utility, nestId: 'utility_utility' }
+                    { ...groups.descanso, nestId: 'utility_descanso' }
                 ]
             }
         ],
