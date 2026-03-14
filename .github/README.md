@@ -2,7 +2,7 @@
 
 # Token Action HUD T20
 
-Token Action HUD is a repositionable HUD of actions for a selected token.
+Token Action HUD Tormenta 20 is a repositionable HUD of actions for a selected token to the Tormenta 20 RPG System.
 
 ![Token Action HUD](token-action-hud.gif)
 
@@ -29,7 +29,12 @@ Token Action HUD is a repositionable HUD of actions for a selected token.
 
 ## Required Modules
 
-**IMPORTANT** - Token Action HUD Template requires the [Token Action HUD Core](https://foundryvtt.com/packages/token-action-hud-core) module to be installed.
+### Token Action HUD Core
+
+Token Action HUD Tormenta20 requires the [Token Action HUD Core](https://foundryvtt.com/packages/token-action-hud-core) module to be installed.
+
+### sockelib
+Token Action HUD Core requirest the [sockelib](https://foundryvtt.com/packages/socketlib) library module.
 
 ## Recommended Modules
 Token Action HUD uses the [Color Picker](https://foundryvtt.com/packages/color-picker) library module for its color picker settings.
