@@ -29,9 +29,13 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
                 items = coreModule.api.Utils.sortItemsByName(items)
                 this.items = items
             }
-
+            console.log(this.actorType);
             if (this.actorType === 'character') {
                 this.#buildCharacterActions()
+            } else if (this.actorType === 'npc') {
+                this.#buildMonsterActions()
+            } else if (this.actorType === 'simple') {
+                this.#buildSimpleActions()  
             } else if (!this.actor) {
                 this.#buildMultipleTokenActions()
             }
@@ -52,6 +56,33 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
             this.#buildCombat()
             this.#buildRest()
         }
+
+        /**
+         * Build monster actions
+         * @private
+         */
+        #buildMonsterActions () {
+            this.#buildInventory()
+            this.#buildSpells()
+            this.#buildSkills()
+            this.#buildAtributes()
+            this.#buildFeatures()
+            this.#buildEffects()
+            this.#buildCondition()
+            this.#buildCombat()
+        }
+
+
+        #buildSimpleActions () {
+            this.#buildInventory()
+            this.#buildSpells()
+            this.#buildAtributes()
+            this.#buildFeatures()
+            this.#buildEffects()
+            this.#buildCondition()
+            this.#buildCombat()
+        }
+
 
         /**
          * Build multiple token actions
@@ -279,12 +310,11 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         async #buildFeatures () {
             const powers = new Map([...this.items].filter(([, value]) => value.type === "poder"));
             if (powers.size == 0) return
-
             const actionTypeId = 'feature'
             const featureMap = new Map()
             let type
             for (const [itemId, itemData ] of powers) {
-                if (itemData.labels.ativacao === "Passivo") {
+                if (itemData.labels.ativacao === "Passivo" || itemData.labels.ativacao == undefined) {
                     type = "poder_passivo"
                     } else {
                     type = "poder_ativo"
@@ -313,7 +343,8 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
                         img: coreModule.api.Utils.getImage(itemData),
                         icon1: this.#getManaCostIcon(itemData.system.ativacao.custo),
                         listName,
-                        encodedValue
+                        encodedValue,
+                        system: { actionType: actionTypeName, actionId: itemId },
                     }
                 })
                 this.addActions(actions, groupData)
@@ -412,7 +443,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
                         cssClass: `toggle${(hasEffect) ? " active": ""}`,
                         tooltip: this.#getConditionTooltipData(itemId, itemData.name),
                         listName,
-                        system: { actionType, actionType: itemId },
+                        system: { actionType, actionId: itemId },
                         encodedValue
                     }
                 })

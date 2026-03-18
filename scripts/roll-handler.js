@@ -16,7 +16,6 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
             const [actionTypeId, actionId] = encodedValue.split('|')
 
             const renderable = ['item']
-
             if (renderable.includes(actionTypeId) && this.isRenderItem()) {
                 return this.doRenderItem(this.actor, actionId)
             }
@@ -188,15 +187,13 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         }
 
         async handleActionHover(event) {
-            const type = ["feature", "item", "spell", "arma"];
-
-            if(!this.actor || !this.action?.system?.actionid) return;
+            const type = ["Feature", "Item", "Spell", "Arma"];
+            if(!this.actor || !this.action?.system?.actionId) return;
 
             const {actionType, actionId} = this.action.system;
 
             if (!type.includes(actionType)) return;
             const item = coreModule.api.Utils.getItem(this.actor, actionId);
-
             if (this.isHover) {
                 Hooks.call("tokenActionHudSystemActionHoverOn", event, item);
             } else {
